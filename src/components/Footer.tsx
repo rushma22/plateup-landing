@@ -11,8 +11,9 @@ export function Footer() {
             alt="PlateUp"
             label="Logo"
             rounded="rounded-full"
-            className="h-10 w-10"
+            className="h-12 w-12 bg-brand"
             compact
+            imgClassName="h-full w-full object-cover"
           />
           <div>
             <p className="font-display text-sm font-semibold text-ink">PlateUp</p>

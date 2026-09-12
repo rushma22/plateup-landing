@@ -63,13 +63,13 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className="flex w-full items-center justify-center rounded-full border border-slate-200/40 bg-white/90 px-1 py-1.5 shadow-[0_12px_40px_rgba(232,119,34,0.12)] backdrop-blur-2xl md:w-auto md:px-1.5"
           >
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full border border-slate-100 bg-white shadow-sm">
+            <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full shadow-sm">
               <PngSlot
                 src="/logo.png"
                 alt="PlateUp"
                 label="Logo"
                 rounded="rounded-full"
-                className="h-full w-full"
+                className="h-full w-full bg-brand"
                 compact
                 imgClassName="h-full w-full object-cover"
               />

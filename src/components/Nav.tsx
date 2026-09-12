@@ -29,7 +29,7 @@ export function Nav() {
                 alt="PlateUp"
                 label="Logo"
                 rounded="rounded-full"
-                className="h-9 w-9 bg-ink sm:h-10 sm:w-10"
+                className="h-9 w-9 bg-brand sm:h-10 sm:w-10"
                 compact
                 imgClassName="h-full w-full object-cover"
               />
