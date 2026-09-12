@@ -17,10 +17,13 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
+  max-width: 100%;
+  overflow-x: hidden;
   font-family: var(--font-sans);
   background: #f9fafb;
   color: var(--color-ink);

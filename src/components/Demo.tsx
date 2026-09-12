@@ -47,10 +47,25 @@ const slides = [
 
 const SLIDE_MS = 4200;
 
+function useCompactCarousel() {
+  const [compact, setCompact] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setCompact(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  return compact;
+}
+
 export function Demo() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const reduceMotion = useReducedMotion();
+  const compact = useCompactCarousel();
   const slide = slides[index];
 
   useEffect(() => {
@@ -75,15 +90,15 @@ export function Demo() {
   return (
     <section id="demo" className="scroll-mt-20 bg-[#f9fafb] px-4 py-5 md:px-6 md:py-6">
       <div className="mx-auto max-w-[1400px]">
-        <div className="rounded-[48px] border border-slate-200/50 bg-white shadow-[0_40px_100px_-20px_rgba(232,119,34,0.08)]">
-          <div className="px-6 pt-7 text-center md:px-10 md:pt-8">
+        <div className="overflow-hidden rounded-[28px] border border-slate-200/50 bg-white shadow-[0_40px_100px_-20px_rgba(232,119,34,0.08)] md:rounded-[48px]">
+          <div className="relative z-10 px-5 pt-7 text-center md:px-10 md:pt-8">
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-deep">
               Demo
             </p>
-            <h2 className="mt-2 font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl">
+            <h2 className="mt-2 font-display text-[1.75rem] font-medium tracking-tight text-ink sm:text-4xl">
               The guest journey, for real.
             </h2>
-            <div className="mt-4 min-h-[4.5rem]">
+            <div className="mt-4 min-h-[6.5rem] sm:min-h-[4.5rem]">
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
                   key={slide.id}
@@ -106,8 +121,8 @@ export function Demo() {
 
           <div className="relative flex flex-col items-center gap-6 px-4 pb-8 pt-2 md:px-10 md:pb-10">
             <div
-              className="relative mx-auto h-[min(36rem,78vw)] w-full max-w-4xl md:h-[38rem]"
-              style={{ perspective: "1400px" }}
+              className="relative mx-auto h-[min(28rem,58vh)] w-full max-w-4xl overflow-hidden md:h-[38rem]"
+              style={{ perspective: compact ? undefined : "1400px" }}
             >
               <button
                 type="button"
@@ -144,13 +159,35 @@ export function Demo() {
                     className="absolute left-1/2 top-1/2 origin-center cursor-pointer border-0 bg-transparent p-0 outline-none focus-visible:ring-2 focus-visible:ring-brand/40 focus-visible:ring-offset-2"
                     initial={false}
                     animate={{
-                      x: `calc(-50% + ${wrapped * (isActive ? 0 : 42)}%)`,
+                      x: compact
+                        ? "-50%"
+                        : `calc(-50% + ${wrapped * (isActive ? 0 : 42)}%)`,
                       y: "-50%",
-                      scale: isActive ? 1 : abs === 1 ? 0.76 : 0.58,
-                      rotateY: wrapped * -22,
-                      opacity: abs > 1 ? 0 : isActive ? 1 : 0.4,
+                      scale: compact
+                        ? isActive
+                          ? 1
+                          : 0.9
+                        : isActive
+                          ? 1
+                          : abs === 1
+                            ? 0.76
+                            : 0.58,
+                      rotateY: compact ? 0 : wrapped * -22,
+                      opacity: compact
+                        ? isActive
+                          ? 1
+                          : 0
+                        : abs > 1
+                          ? 0
+                          : isActive
+                            ? 1
+                            : 0.4,
                       zIndex: slides.length - abs,
-                      filter: isActive ? "blur(0px)" : "blur(2px)",
+                      filter: compact
+                        ? "blur(0px)"
+                        : isActive
+                          ? "blur(0px)"
+                          : "blur(2px)",
                     }}
                     transition={{
                       type: "spring",
@@ -159,16 +196,22 @@ export function Demo() {
                       mass: 0.9,
                     }}
                     style={{
-                      width: "min(18rem, 62vw)",
-                      pointerEvents: abs > 1 ? "none" : "auto",
-                      transformStyle: "preserve-3d",
+                      width: compact ? "min(16rem, 70vw)" : "min(18rem, 62vw)",
+                      pointerEvents: compact
+                        ? isActive
+                          ? "auto"
+                          : "none"
+                        : abs > 1
+                          ? "none"
+                          : "auto",
+                      transformStyle: compact ? undefined : "preserve-3d",
                     }}
                   >
                     <motion.img
                       src={item.image}
                       alt={item.alt}
                       draggable={false}
-                      className="h-auto w-full select-none drop-shadow-[0_28px_50px_rgba(26,26,26,0.22)]"
+                      className="mx-auto h-auto max-h-[min(26rem,54vh)] w-full object-contain select-none drop-shadow-[0_28px_50px_rgba(26,26,26,0.22)] md:max-h-none"
                       animate={
                         isActive && !reduceMotion
                           ? { y: [0, -6, 0] }

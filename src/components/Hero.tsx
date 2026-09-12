@@ -13,8 +13,8 @@ const navLinks = [
 
 export function Hero() {
   return (
-    <section id="home" className="scroll-mt-20 bg-[#f9fafb] px-4 pt-5 pb-3 md:px-6 md:pt-6 md:pb-4">
-      <div className="relative mx-auto flex h-[600px] w-full max-w-[1400px] flex-col overflow-hidden rounded-[48px] border border-slate-200/50 bg-white shadow-[0_40px_100px_-20px_rgba(232,119,34,0.08)]">
+    <section id="home" className="scroll-mt-20 bg-[#f9fafb] px-3 pt-3 pb-3 md:px-6 md:pt-6 md:pb-4">
+      <div className="relative mx-auto flex min-h-[520px] w-full max-w-[1400px] flex-col overflow-hidden rounded-[28px] border border-slate-200/50 bg-white shadow-[0_40px_100px_-20px_rgba(232,119,34,0.08)] md:h-[600px] md:min-h-0 md:rounded-[48px]">
         <div className="pointer-events-none absolute inset-0 z-0 isolate overflow-hidden select-none">
           <video
             src={HERO_VIDEO}
@@ -32,9 +32,9 @@ export function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="relative z-20 flex flex-1 flex-col items-start px-8 pt-12 md:px-16 md:pt-16"
+          className="relative z-20 flex flex-1 flex-col items-start px-5 pt-10 pb-28 md:px-16 md:pt-16 md:pb-0"
         >
-          <h1 className="font-display text-[42px] font-medium leading-[1.08] tracking-tight text-ink md:text-[56px]">
+          <h1 className="font-display text-[34px] font-medium leading-[1.08] tracking-tight text-ink sm:text-[42px] md:text-[56px]">
             Ship orders from
             <br />
             the table — instantly
@@ -56,12 +56,12 @@ export function Hero() {
           </motion.a>
         </motion.div>
 
-        <div className="absolute bottom-10 left-1/2 z-30 -translate-x-1/2">
+        <div className="absolute bottom-5 left-1/2 z-30 w-[calc(100%-1.5rem)] max-w-[28rem] -translate-x-1/2 md:bottom-10 md:w-auto md:max-w-none">
           <motion.nav
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="flex items-center rounded-full border border-slate-200/40 bg-white/90 px-1.5 py-1.5 shadow-[0_12px_40px_rgba(232,119,34,0.12)] backdrop-blur-2xl"
+            className="flex w-full items-center justify-center rounded-full border border-slate-200/40 bg-white/90 px-1 py-1.5 shadow-[0_12px_40px_rgba(232,119,34,0.12)] backdrop-blur-2xl md:w-auto md:px-1.5"
           >
             <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full border border-slate-100 bg-white shadow-sm">
               <PngSlot

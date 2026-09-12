@@ -9,7 +9,7 @@ export function About() {
   return (
     <section id="about" className="scroll-mt-20 bg-[#f9fafb] px-4 py-5 md:px-6 md:py-6">
       <div className="mx-auto max-w-[1400px]">
-        <div className="overflow-hidden rounded-[48px] border border-slate-200/50 bg-white p-6 shadow-[0_40px_100px_-20px_rgba(232,119,34,0.08)] sm:p-8 lg:p-12">
+        <div className="overflow-hidden rounded-[28px] border border-slate-200/50 bg-white p-6 shadow-[0_40px_100px_-20px_rgba(232,119,34,0.08)] sm:p-8 md:rounded-[48px] lg:p-12">
           <div className="mb-6 flex items-center gap-3">
             <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand text-[11px] font-semibold text-white sm:h-7 sm:w-7 sm:text-xs">
               1
